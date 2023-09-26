@@ -102,6 +102,7 @@ else
   echo -e "${YELLOW_INFO_COLOR} checking out master HEAD from remote as branch -> master-alakazam-review and pulling latest changes from remote${RESET}"
   # checkout master without console output and into a branch named master-alakazam-review instead of master
   git checkout master 2> /dev/null -b master-alakazam-review
+  git pull --quiet 2> /dev/null
 
   echo -e "${YELLOW_INFO_COLOR} checking out $initial_branch as branch -> $initial_branch-alakazam-review and pulling latest changes from remote${RESET}"
   git checkout $initial_branch 2> /dev/null --quiet -b "$initial_branch-alakazam-review"
