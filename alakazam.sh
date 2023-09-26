@@ -20,7 +20,7 @@ YELLOW_INFO_COLOR='\033[1;33m'
 
 # This script assumes:
 # 1. That you're working on a local github repository with a master branch named 'master'
-# 2. That normal git commands like 'git push' and 'git pull' are configuRED_ERROR_COLOR to an upstream remote (a github repo online)
+# 2. That normal git commands like 'git push' and 'git pull' are configured to an upstream remote (a github repo online)
 # 3. That you're on a branch other than master (if no arguments are supplied)
 # 4. That you're on a clean branch (no uncommitted changes) (we check for this below)
 # 5. That if you supply an argument, it's a valid branch name (we check for this below)
@@ -120,6 +120,6 @@ git checkout --quiet $initial_branch 2> /dev/null
 git branch -D --quiet "$initial_branch-alakazam-review" 2> /dev/null
 git branch -D --quiet master-alakazam-review 2> /dev/null
 git stash push -m alakazamage --quiet 2> /dev/null
-# git stash drop alakazamage --quiet 2> /dev/null
+git stash drop alakazamage --quiet 2> /dev/null
 
 echo -e "${GREEN_SUCCESS_COLOR}kazam!${RESET}"
