@@ -49,7 +49,7 @@ else
 fi
 
 # 3. Ensure we're not on a dirty branch (uncommitted changes)
-if ! git diff-index --quiet HEAD -- > /dev/null 2>&1; then
+if ! git diff-index HEAD > /dev/null 2>&1; then
   echo -e "${RED_ERROR_COLOR}Error: You need to be on a clean branch to use this script.${RESET}"
   exit 1
 fi
@@ -68,7 +68,7 @@ fi
 # 5. If arguments were supplied, ensure the first argument is a valid branch name
 if [ $# -gt 0 ]; then
   # Make sure the argument is a valid branch name
-  if ! git show-ref --verify --quiet "refs/heads/$1"; then
+  if ! git show-ref --verify "refs/heads/$1"; then
     echo -e "${RED_ERROR_COLOR}Error: '$1' is not a valid branch name.${RESET}"
     exit 1
   fi
