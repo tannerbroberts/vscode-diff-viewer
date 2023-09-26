@@ -85,24 +85,20 @@ initial_branch=$(git symbolic-ref --short HEAD)
 # This puts us in a state where we can perform a diff between the two branches (the one we provided as an argument and master).
 if [ $# -gt 0 ]; then
   # An argument was supplied (its valid, we checked above)
-
-  # checkout the branch we provided as an argument without console output and into a branch named $1-alakazam-review instead of $1
-  echo -e "${YELLOW_INFO_COLOR} checking out $1 > $1-alakazam-review and pulling latest changes from remote${RESET}"
-  git checkout $1 --quiet 2> /dev/null
-  git pull 2> --quiet /dev/null
-  git checkout $1 --quiet 2> /dev/null -b $1-alakazam-review
-  git pull --quiet 2> /dev/null
-
   echo -e "${YELLOW_INFO_COLOR} checking out master HEAD as branch -> master-alakazam-review and pulling latest changes from remote${RESET}"
   # checkout master without console output and into a branch named master-alakazam-review instead of master
   git checkout master --quiet 2> /dev/null -b master-alakazam-review
   git pull --quiet 2> /dev/null
 
-  echo -e "${YELLOW_INFO_COLOR} checking out $1 as branch -> $1-alakazam-review and pulling latest changes from remote${RESET}"
-  git checkout $1 2> /dev/null && git checkout $(git symbolic-ref --short HEAD) 2> /dev/null -b "$1-alakazam-review" && git pull 2> /dev/null
+  # checkout the branch we provided as an argument without console output and into a branch named $1-alakazam-review instead of $1
+  echo -e "${YELLOW_INFO_COLOR} checking out $1 > $1-alakazam-review and pulling latest changes from remote${RESET}"
+  git checkout $1 --quiet 2> /dev/null
+  git pull --quiet 2> /dev/null
+  git checkout $1 --quiet -b $1-alakazam-review 2> /dev/null
+  git pull --quiet 2> /dev/null
 
-else # No arguments were supplied, so we'll compare the current (clean, we're sure) branch to master
-
+else
+  # No arguments were supplied, so we'll compare the current (clean, we're sure) branch to master
   echo -e "${YELLOW_INFO_COLOR} checking out master HEAD from remote as branch -> master-alakazam-review and pulling latest changes from remote${RESET}"
   # checkout master without console output and into a branch named master-alakazam-review instead of master
   git checkout master 2> /dev/null -b master-alakazam-review
