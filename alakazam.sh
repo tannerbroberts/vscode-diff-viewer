@@ -120,6 +120,6 @@ git checkout --quiet $initial_branch 2> /dev/null
 git branch -D --quiet "$initial_branch-alakazam-review" 2> /dev/null
 git branch -D --quiet master-alakazam-review 2> /dev/null
 git stash push -m alakazamage --quiet 2> /dev/null
-# git stash drop alakazamage --quiet 2> /dev/null
+git stash drop alakazamage --quiet 2> /dev/null
 
 echo -e "${GREEN_SUCCESS_COLOR}kazam!${RESET}"
